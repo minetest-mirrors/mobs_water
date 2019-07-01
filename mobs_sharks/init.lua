@@ -63,22 +63,11 @@ if mobs.mod and mobs.mod == "redo" then
 			lava_damage = 10,
 			light_damage = 0,
 			animation = l_anims,
-			do_custom = function(self)
-				if HELP_WITH_EXPERIMENT then
-					local p = self.object:getpos()
-					local a = self.object:getvelocity()
-					if p.y > 0 and a.y > 0 then
-						a.y = -1
-					else
-						local r = math.random(100)
-						if r >= 1 and r <=25 then a.y = 0.25
-						elseif r > 25 and r <= 50 then a.y = 0
-						elseif r > 50 and r <= 75 then a.y = -0.25
-						end
-					end
-					self.object:setvelocity(a)
-				end
-			end
+			jump = false,
+			stepheight = 0.1,
+			drops = {
+				{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
+			},
 		})
 		--name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
 		mobs:spawn_specific("mobs_sharks:shark_lg", l_spawn_in, l_spawn_near, -1, 20, 30, l_spawn_chance, 1, -31000, 0)
@@ -111,7 +100,12 @@ if mobs.mod and mobs.mod == "redo" then
 			water_damage = 0,
 			lava_damage = 10,
 			light_damage = 0,
-			animation = l_anims
+			animation = l_anims,
+			jump = false,
+			stepheight = 0.1,
+			drops = {
+				{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
+			},
 		})
 		--name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
 		mobs:spawn_specific("mobs_sharks:shark_md", l_spawn_in, l_spawn_near, -1, 20, 30, l_spawn_chance, 1, -31000, 0)
@@ -144,7 +138,12 @@ if mobs.mod and mobs.mod == "redo" then
 			water_damage = 0,
 			lava_damage = 10,
 			light_damage = 0,
-			animation = l_anims
+			animation = l_anims,
+			jump = false,
+			stepheight = 0.1,
+			drops = {
+				{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
+			},
 		})
 		--name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
 		mobs:spawn_specific("mobs_sharks:shark_sm", l_spawn_in, l_spawn_near, -1, 20, 30, l_spawn_chance, 1, -31000, 0)

@@ -54,7 +54,11 @@ if mobs.mod and mobs.mod == "redo" then
 			water_damage = 0,
 			lava_damage = 10,
 			light_damage = 0,
-			animation = l_anims
+			animation = l_anims,
+			drops = {
+				{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
+				{name = "mobs:leather", chance = 1, min = 0, max = 2},
+			},
 		})
 		--name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
 		mobs:spawn_specific("mobs_crocs:crocodile",
@@ -87,7 +91,11 @@ if mobs.mod and mobs.mod == "redo" then
 			water_damage = 0,
 			lava_damage = 10,
 			light_damage = 0,
-			animation = l_anims
+			animation = l_anims,
+			drops = {
+				{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
+				{name = "mobs:leather", chance = 1, min = 0, max = 2},
+			},
 		})
 		--name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
 		mobs:spawn_specific("mobs_crocs:crocodile_float",
@@ -122,7 +130,11 @@ if mobs.mod and mobs.mod == "redo" then
 			water_damage = 0,
 			lava_damage = 10,
 			light_damage = 0,
-			animation = l_anims
+			animation = l_anims,
+			drops = {
+				{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
+				{name = "mobs:leather", chance = 1, min = 0, max = 2},
+			},
 		})
 		--name, nodes, neighbours, minlight, maxlight, interval, chance, active_object_count, min_height, max_height
 		mobs:spawn_specific("mobs_crocs:crocodile_swim",

@@ -48,6 +48,9 @@ if mobs.mod and mobs.mod == "redo" then
 		light_damage = 0,
 		fall_damage = 1,
 		animation = l_anims,
+		drops = {
+			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
+		},
 		follow = "farming:carrot",
 		on_rightclick = function(self, clicker)
 			self.state = ""
@@ -94,6 +97,9 @@ if mobs.mod and mobs.mod == "redo" then
 		light_damage = 0,
 		fall_damage = 0,
 		animation = l_anims,
+		drops = {
+			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
+		},
 		on_rightclick = function(self, clicker)
 			mobs:capture_mob(self, clicker, 0, 0, 80, true, nil)
 		end
