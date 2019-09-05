@@ -1,6 +1,6 @@
 
 if minetest.get_modpath("mobs") and not mobs.mod and mobs.mod ~= "redo" then
-	minetest.log("error", "[mobs_crocs] mobs redo API not found!")
+	minetest.log("error", "[mobs_sharks] mobs redo API not found!")
 	return
 end
 
