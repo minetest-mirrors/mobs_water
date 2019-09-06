@@ -88,6 +88,7 @@ mobs:spawn({
 	interval = 30,
 	chance = l_spawn_chance,
 	min_height = 1,
+	max_height = 10,
 })
 
 mobs:register_egg("mobs_turtles:turtle", "Turtle", "default_grass.png", 1)

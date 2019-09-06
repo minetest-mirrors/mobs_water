@@ -83,6 +83,7 @@ if ENABLE_WALKERS then
 		interval = 30,
 		chance = l_spawn_chance,
 		min_height = 0,
+		max_height = 10,
 	})
 
 	mobs:register_egg("mobs_crocs:crocodile", "Crocodile", l_egg_texture, 1)
@@ -130,6 +131,7 @@ if ENABLE_FLOATERS then
 		interval = 30,
 		chance = l_spawn_chance,
 		min_height = -3,
+		max_height = 10,
 	})
 
 	mobs:register_egg("mobs_crocs:crocodile_float", "Crocodile (floater)",
@@ -176,6 +178,7 @@ if ENABLE_SWIMMERS then
 		interval = 30,
 		chance = l_spawn_chance,
 		min_height = -8,
+		max_height = 10,
 	})
 
 	mobs:register_egg("mobs_crocs:crocodile_swim", "Crocodile (swimmer)",
