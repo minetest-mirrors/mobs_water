@@ -1,63 +1,40 @@
-
-if minetest.get_modpath("mobs") and not mobs.mod and mobs.mod ~= "redo" then
-	minetest.log("error", "[mobs_sharks] mobs redo API not found!")
-	return
-end
-
 -- local variables
-local l_colors = {
-	"#604000:175",	--brown
-	"#ffffff:150",	--white
-	"#404040:150",	--dark_grey
-	"#a0a0a0:150"	--grey
-}
 local l_skins = {
 	{
-		"(shark_first.png^[colorize:" .. l_colors[3]
-		.. ")^(shark_second.png^[colorize:" .. l_colors[4]
+		"(shark_first.png^[colorize:#404040:150" -- dark grey
+		.. ")^(shark_second.png^[colorize:#a0a0a0:150" -- grey
 		.. ")^shark_third.png"
 	},
 	{
-		"(shark_first.png^[colorize:" .. l_colors[1]
-		.. ")^(shark_second.png^[colorize:" .. l_colors[2]
+		"(shark_first.png^[colorize:#604000:175" -- brown
+		.. ")^(shark_second.png^[colorize:#ffffff:150" -- white
 		..")^shark_third.png"
 	},
 	{
-		"(shark_first.png^[colorize:" .. l_colors[4]
-		.. ")^(shark_second.png^[colorize:" .. l_colors[2]
+		"(shark_first.png^[colorize:#a0a0a0:150" -- grey
+		.. ")^(shark_second.png^[colorize:#ffffff:150" -- white
 		.. ")^shark_third.png"
 	}
 }
-local l_anims = {
-	speed_normal = 24,
-	speed_run = 24,
-	stand_start = 1,
-	stand_end = 80,
-	walk_start = 80,
-	walk_end = 160,
-	run_start = 80,
-	run_end = 160
-}
-local l_model = "mob_shark.b3d"
-local l_egg_texture = "mob_shark_shark_item.png"
-local l_spawn_in = {"default:water_flowing","default:water_source"}
-local l_spawn_near = {
-	"default:water_flowing", "default:water_source",
-	"seawrecks:woodship", "seawrecks:uboot"
-}
+
+
 local l_spawn_chance = 60000
 
 -- load settings
-dofile(minetest.get_modpath("mobs_sharks").."/SETTINGS.txt")
+dofile(minetest.get_modpath("mobs_sharks") .. "/SETTINGS.txt")
+
 if not ENABLE_SHARK_LARGE then
 	l_spawn_chance = l_spawn_chance - 20000
 end
+
 if not ENABLE_SHARK_MEDIUM then
 	l_spawn_chance = l_spawn_chance - 20000
 end
+
 if not ENABLE_SHARK_SMALL then
 	l_spawn_chance = l_spawn_chance - 20000
 end
+
 
 -- large
 if ENABLE_SHARK_LARGE then
@@ -72,7 +49,7 @@ if ENABLE_SHARK_LARGE then
 		armor = 150,
 		collisionbox = {-0.75, -0.5, -0.75, 0.75, 0.5, 0.75},
 		visual = "mesh",
-		mesh = l_model,
+		mesh = "mob_shark.b3d",
 		textures = l_skins,
 		makes_footstep_sound = false,
 		walk_velocity = 4,
@@ -85,7 +62,16 @@ if ENABLE_SHARK_LARGE then
 		water_damage = 0,
 		lava_damage = 10,
 		light_damage = 0,
-		animation = l_anims,
+		animation = {
+			speed_normal = 24,
+			speed_run = 24,
+			stand_start = 1,
+			stand_end = 80,
+			walk_start = 80,
+			walk_end = 160,
+			run_start = 80,
+			run_end = 160
+		},
 		jump = false,
 		stepheight = 0,
 		drops = {
@@ -95,14 +81,18 @@ if ENABLE_SHARK_LARGE then
 
 	mobs:spawn({
 		name = "mobs_sharks:shark_lg",
-		nodes = l_spawn_in,
-		neighbors = l_spawn_near,
+		nodes = {"default:water_flowing","default:water_source"},
+		neighbors = {
+			"default:water_flowing", "default:water_source",
+			"seawrecks:woodship", "seawrecks:uboot"
+		},
 		interval = 30,
 		chance = l_spawn_chance,
 		max_height = 0,
 	})
 
-	mobs:register_egg("mobs_sharks:shark_lg", "Shark (large)", l_egg_texture, 0)
+	mobs:register_egg("mobs_sharks:shark_lg", "Shark (large)",
+			"mob_shark_shark_item.png", 0)
 end
 
 -- medium
@@ -119,7 +109,7 @@ if ENABLE_SHARK_MEDIUM then
 		collisionbox = {-0.57, -0.38, -0.57, 0.57, 0.38, 0.57},
 		visual = "mesh",
 		visual_size = {x = 0.75, y = 0.75},
-		mesh = l_model,
+		mesh = "mob_shark.b3d",
 		textures = l_skins,
 		makes_footstep_sound = false,
 		walk_velocity = 2,
@@ -132,7 +122,16 @@ if ENABLE_SHARK_MEDIUM then
 		water_damage = 0,
 		lava_damage = 10,
 		light_damage = 0,
-		animation = l_anims,
+		animation = {
+			speed_normal = 24,
+			speed_run = 24,
+			stand_start = 1,
+			stand_end = 80,
+			walk_start = 80,
+			walk_end = 160,
+			run_start = 80,
+			run_end = 160
+		},
 		jump = false,
 		stepheight = 0,
 		drops = {
@@ -142,14 +141,18 @@ if ENABLE_SHARK_MEDIUM then
 
 	mobs:spawn({
 		name = "mobs_sharks:shark_md",
-		nodes = l_spawn_in,
-		neighbors = l_spawn_near,
+		nodes = {"default:water_flowing","default:water_source"},
+		neighbors = {
+			"default:water_flowing", "default:water_source",
+			"seawrecks:woodship", "seawrecks:uboot"
+		},
 		interval = 30,
 		chance = l_spawn_chance,
 		max_height = 0,
 	})
 
-	mobs:register_egg("mobs_sharks:shark_md", "Shark (medium)", l_egg_texture, 0)
+	mobs:register_egg("mobs_sharks:shark_md", "Shark (medium)",
+			"mob_shark_shark_item.png", 0)
 end
 
 -- small
@@ -166,7 +169,7 @@ if ENABLE_SHARK_SMALL then
 		collisionbox = {-0.38, -0.25, -0.38, 0.38, 0.25, 0.38},
 		visual = "mesh",
 		visual_size = {x = 0.5, y = 0.5},
-		mesh = l_model,
+		mesh = "mob_shark.b3d",
 		textures = l_skins,
 		makes_footstep_sound = false,
 		walk_velocity = 2,
@@ -179,7 +182,16 @@ if ENABLE_SHARK_SMALL then
 		water_damage = 0,
 		lava_damage = 10,
 		light_damage = 0,
-		animation = l_anims,
+		animation = {
+			speed_normal = 24,
+			speed_run = 24,
+			stand_start = 1,
+			stand_end = 80,
+			walk_start = 80,
+			walk_end = 160,
+			run_start = 80,
+			run_end = 160
+		},
 		jump = false,
 		stepheight = 0,
 		drops = {
@@ -189,12 +201,16 @@ if ENABLE_SHARK_SMALL then
 
 	mobs:spawn({
 		name = "mobs_sharks:shark_sm",
-		nodes = l_spawn_in,
-		neighbors = l_spawn_near,
+		nodes = {"default:water_flowing","default:water_source"},
+		neighbors = {
+			"default:water_flowing", "default:water_source",
+			"seawrecks:woodship", "seawrecks:uboot"
+		},
 		interval = 30,
 		chance = l_spawn_chance,
 		max_height = 0,
 	})
 
-	mobs:register_egg("mobs_sharks:shark_sm", "Shark (small)", l_egg_texture, 0)
+	mobs:register_egg("mobs_sharks:shark_sm", "Shark (small)",
+			"mob_shark_shark_item.png", 0)
 end

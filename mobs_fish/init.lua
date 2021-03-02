@@ -1,33 +1,9 @@
 
-if minetest.get_modpath("mobs") and not mobs.mod and mobs.mod ~= "redo" then
-	minetest.log("error", "[mobs_fish] mobs redo API not found!")
-	return
-end
-
-local SPRITE_VERSION = false	-- set to true to use upright sprites instead of meshes
+local SPRITE_VERSION = false -- set to true to use upright sprites instead of meshes
 
 -- local variables
-local l_spawn_in = {
-	"default:water_source", "default:water_flowing",
-	"default:river_water_source", "default:river_water_flowing"
-}
-local l_spawn_near = {
-	"default:sand","default:dirt","group:seaplants","group:seacoral"
-}
 local l_spawn_chance = 10000
-local l_cc_hand = 25
-local l_cc_net = 80
 local l_water_level = minetest.settings:get("water_level") - 1
-local l_anims = {
-	speed_normal = 24,
-	speed_run = 24,
-	stand_start = 1,
-	stand_end = 80,
-	walk_start = 81,
-	walk_end = 155,
-	run_start = 81,
-	run_end = 155
-}
 local l_visual = "mesh"
 local l_visual_size = {x = .75, y = .75}
 local l_clown_mesh = "animal_clownfish.b3d"
@@ -71,14 +47,25 @@ mobs:register_mob("mobs_fish:clownfish", {
 	fall_speed = 0,
 	view_range = 8,
 	water_damage = 0,
-	air_damage = 1,
+	air_damage = 0,
 	lava_damage = 5,
 	light_damage = 0,
-	animation = l_anims,
+	animation = {
+		speed_normal = 24,
+		speed_run = 24,
+		stand_start = 1,
+		stand_end = 80,
+		walk_start = 81,
+		walk_end = 155,
+		run_start = 81,
+		run_end = 155
+	},
+
 	on_rightclick = function(self, clicker)
-		mobs:capture_mob(self, clicker, l_cc_hand, l_cc_net, 0, true,
+		mobs:capture_mob(self, clicker, 25, 80, 0, true,
 				"mobs_fish:clownfish")
 	end,
+
 	on_flop = function(self)
 
 --		print("=== am on land, help!", self.state)
@@ -97,8 +84,13 @@ mobs:register_mob("mobs_fish:clownfish", {
 
 mobs:spawn({
 	name = "mobs_fish:clownfish",
-	nodes = l_spawn_in,
-	neighbors = l_spawn_near,
+	nodes = {
+		"default:water_source", "default:water_flowing",
+		"default:river_water_source", "default:river_water_flowing"
+	},
+	neighbors =  {
+		"default:sand","default:dirt","group:seaplants","group:seacoral"
+	},
 	min_light = 5,
 	interval = 30,
 	chance = l_spawn_chance,
@@ -131,12 +123,23 @@ mobs:register_mob("mobs_fish:tropical", {
 	water_damage = 0,
 	lava_damage = 5,
 	light_damage = 0,
-	air_damage = 1,
-	animation = l_anims,
+	air_damage = 0,
+	animation = {
+		speed_normal = 24,
+		speed_run = 24,
+		stand_start = 1,
+		stand_end = 80,
+		walk_start = 81,
+		walk_end = 155,
+		run_start = 81,
+		run_end = 155
+	},
+
 	on_rightclick = function(self, clicker)
-		mobs:capture_mob(self, clicker, l_cc_hand, l_cc_net, 0, true,
+		mobs:capture_mob(self, clicker, 25, 80, 0, true,
 				"mobs_fish:tropical")
 	end,
+
 	on_flop = function(self)
 
 --		print("=== am on land, help!", self.state)
@@ -155,8 +158,13 @@ mobs:register_mob("mobs_fish:tropical", {
 
 mobs:spawn({
 	name = "mobs_fish:tropical",
-	nodes = l_spawn_in,
-	neighbors = l_spawn_near,
+	nodes = {
+		"default:water_source", "default:water_flowing",
+		"default:river_water_source", "default:river_water_flowing"
+	},
+	neighbors =  {
+		"default:sand","default:dirt","group:seaplants","group:seacoral"
+	},
 	min_light = 5,
 	interval = 30,
 	chance = l_spawn_chance,

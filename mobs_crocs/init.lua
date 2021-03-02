@@ -1,26 +1,5 @@
 
-if minetest.get_modpath("mobs") and not mobs.mod and mobs.mod ~= "redo" then
-	minetest.log("error", "[mobs_crocs] mobs redo API not found!")
-	return
-end
-
 -- local variables
-local l_skins = {
-	{"croco.png"},
-	{"croco2.png"}
-}
-
-local l_anims = {
-	speed_normal = 24,	speed_run = 24,
-	stand_start = 0,	stand_end = 80,
-	walk_start = 81,	walk_end = 170,
-	run_start = 81,		run_end = 170,
-	punch_start = 205,	punch_end = 220
-}
-
-local l_model = "crocodile.x"
-local l_sounds = {random = "croco"}
-local l_egg_texture = "default_grass.png"
 local l_spawn_chance = 60000
 
 -- load settings
@@ -31,9 +10,11 @@ local ENABLE_SWIMMERS = minetest.settings:get_bool("mobs_crocs.enable_swimmers",
 if not ENABLE_WALKERS then
 	l_spawn_chance = l_spawn_chance - 20000
 end
+
 if not ENABLE_FLOATERS then
 	l_spawn_chance = l_spawn_chance - 20000
 end
+
 if not ENABLE_SWIMMERS then
 	l_spawn_chance = l_spawn_chance - 20000
 end
@@ -52,10 +33,13 @@ if ENABLE_WALKERS then
 		collisionbox = {-0.85, -0.30, -0.85, 0.85, 1.5, 0.85},
 		drawtype = "front",
 		visual = "mesh",
-		mesh = l_model,
-		textures = l_skins,
+		mesh = "crocodile.x",
+		textures = {
+			{"croco.png"},
+			{"croco2.png"}
+		},
 		visual_size = {x = 4, y = 4},
-		sounds = l_sounds,
+		sounds = {random = "croco"},
 		fly = false,
 		floats = 0,
 		stepheight = 1,
@@ -63,7 +47,13 @@ if ENABLE_WALKERS then
 		water_damage = 0,
 		lava_damage = 10,
 		light_damage = 0,
-		animation = l_anims,
+		animation = {
+			speed_normal = 24,	speed_run = 24,
+			stand_start = 0,	stand_end = 80,
+			walk_start = 81,	walk_end = 170,
+			run_start = 81,		run_end = 170,
+			punch_start = 205,	punch_end = 220
+		},
 		drops = {
 			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
 			{name = "mobs:leather", chance = 1, min = 0, max = 2},
@@ -86,7 +76,7 @@ if ENABLE_WALKERS then
 		max_height = 10,
 	})
 
-	mobs:register_egg("mobs_crocs:crocodile", "Crocodile", l_egg_texture, 1)
+	mobs:register_egg("mobs_crocs:crocodile", "Crocodile", "default_grass.png", 1)
 end
 
 -- float
@@ -103,17 +93,26 @@ if ENABLE_FLOATERS then
 		collisionbox = {-0.638, -0.23, -0.638, 0.638, 1.13, 0.638},
 		drawtype = "front",
 		visual = "mesh",
-		mesh = l_model,
-		textures = l_skins,
+		mesh = "crocodile.x",
+		textures = {
+			{"croco.png"},
+			{"croco2.png"}
+		},
 		visual_size = {x = 3, y = 3},
-		sounds = l_sounds,
+		sounds = {random = "croco"},
 		fly = false,
 		stepheight = 1,
 		view_range = 10,
 		water_damage = 0,
 		lava_damage = 10,
 		light_damage = 0,
-		animation = l_anims,
+		animation = {
+			speed_normal = 24,	speed_run = 24,
+			stand_start = 0,	stand_end = 80,
+			walk_start = 81,	walk_end = 170,
+			run_start = 81,		run_end = 170,
+			punch_start = 205,	punch_end = 220
+		},
 		drops = {
 			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
 			{name = "mobs:leather", chance = 1, min = 0, max = 2},
@@ -135,7 +134,7 @@ if ENABLE_FLOATERS then
 	})
 
 	mobs:register_egg("mobs_crocs:crocodile_float", "Crocodile (floater)",
-		l_egg_texture, 1)
+		"default_grass.png", 1)
 end
 
 -- swim
@@ -152,10 +151,13 @@ if ENABLE_SWIMMERS then
 		collisionbox = {-0.425, -0.15, -0.425, 0.425, 0.75, 0.425},
 		drawtype = "front",
 		visual = "mesh",
-		mesh = l_model,
-		textures = l_skins,
+		mesh = "crocodile.x",
+		textures = {
+			{"croco.png"},
+			{"croco2.png"}
+		},
 		visual_size = {x = 2, y = 2},
-		sounds = l_sounds,
+		sounds = {random = "croco"},
 		fly = true,
 		fly_in = "default:water_source",
 		fall_speed = -1,
@@ -164,7 +166,13 @@ if ENABLE_SWIMMERS then
 		water_damage = 0,
 		lava_damage = 10,
 		light_damage = 0,
-		animation = l_anims,
+		animation = {
+			speed_normal = 24,	speed_run = 24,
+			stand_start = 0,	stand_end = 80,
+			walk_start = 81,	walk_end = 170,
+			run_start = 81,		run_end = 170,
+			punch_start = 205,	punch_end = 220
+		},
 		drops = {
 			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
 			{name = "mobs:leather", chance = 1, min = 0, max = 2},
@@ -182,5 +190,5 @@ if ENABLE_SWIMMERS then
 	})
 
 	mobs:register_egg("mobs_crocs:crocodile_swim", "Crocodile (swimmer)",
-		l_egg_texture, 1)
+		"default_grass.png", 1)
 end
