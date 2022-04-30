@@ -69,6 +69,8 @@ if ENABLE_SHARK_LARGE then
 			stand_end = 80,
 			walk_start = 80,
 			walk_end = 160,
+			fly_start = 80,
+			fly_end = 160,
 			run_start = 80,
 			run_end = 160
 		},

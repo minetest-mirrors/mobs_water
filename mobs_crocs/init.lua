@@ -170,6 +170,7 @@ if ENABLE_SWIMMERS then
 			speed_normal = 24,	speed_run = 24,
 			stand_start = 0,	stand_end = 80,
 			walk_start = 81,	walk_end = 170,
+			fly_start = 81,		fly_end = 170,
 			run_start = 81,		run_end = 170,
 			punch_start = 205,	punch_end = 220
 		},

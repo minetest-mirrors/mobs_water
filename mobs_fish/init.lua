@@ -57,6 +57,8 @@ mobs:register_mob("mobs_fish:clownfish", {
 		stand_end = 80,
 		walk_start = 81,
 		walk_end = 155,
+		fly_start = 81,
+		fly_end = 155,
 		run_start = 81,
 		run_end = 155
 	},
