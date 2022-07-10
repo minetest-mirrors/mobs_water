@@ -81,7 +81,7 @@ mobs:register_mob("mobs_fish:clownfish", {
 		self.object:set_velocity({x = 0, y = -10, z = 0})
 
 		return true
-	end,
+	end
 })
 
 mobs:spawn({
@@ -90,14 +90,12 @@ mobs:spawn({
 		"default:water_source", "default:water_flowing",
 		"default:river_water_source", "default:river_water_flowing"
 	},
-	neighbors =  {
-		"default:sand","default:dirt","group:seaplants","group:seacoral"
-	},
+	neighbors =  {"default:sand","default:dirt","group:seaplants","group:seacoral"},
 	min_light = 5,
 	interval = 30,
 	chance = l_spawn_chance,
 	max_height = l_water_level,
-	active_object_count = 5,
+	active_object_count = 5
 })
 
 mobs:register_egg("mobs_fish:clownfish", "Clownfish",
@@ -155,7 +153,7 @@ mobs:register_mob("mobs_fish:tropical", {
 		self.object:set_velocity({x = 0, y = -10, z = 0})
 
 		return true
-	end,
+	end
 })
 
 mobs:spawn({
@@ -164,15 +162,27 @@ mobs:spawn({
 		"default:water_source", "default:water_flowing",
 		"default:river_water_source", "default:river_water_flowing"
 	},
-	neighbors =  {
-		"default:sand","default:dirt","group:seaplants","group:seacoral"
-	},
+	neighbors =  {"default:sand","default:dirt","group:seaplants","group:seacoral"},
 	min_light = 5,
 	interval = 30,
 	chance = l_spawn_chance,
 	max_height = l_water_level,
-	active_object_count = 5,
+	active_object_count = 5
 })
 
 mobs:register_egg("mobs_fish:tropical", "Tropical fish",
 	"animal_fish_blue_white_fish_blue_white_item.png", 0)
+
+
+local function add_food_group(item)
+
+	local def = minetest.registered_items[item]
+	local grp = def.groups
+
+	grp.food_fish_raw = 1
+
+	minetest.override_item(item, {groups = grp})
+end
+
+add_food_group("mobs_fish:tropical")
+add_food_group("mobs_fish:clownfish")
