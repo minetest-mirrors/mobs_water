@@ -11,6 +11,7 @@ local l_skins = {
 
 local l_spawn_chance = 30000
 
+
 -- land turtle
 mobs:register_mob("mobs_turtles:turtle", {
 	type = "animal",
@@ -47,13 +48,13 @@ mobs:register_mob("mobs_turtles:turtle", {
 		hide_end = 100
 	},
 	drops = {
-		{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
+		{name = "mobs:meat_raw", chance = 1, min = 1, max = 3}
 	},
 	follow = "farming:carrot",
 
 	on_rightclick = function(self, clicker)
 
-		self.state = "hide" -- was ""
+		self.state = "hide"
 
 		mobs:set_velocity(self, 0)
 
@@ -62,6 +63,7 @@ mobs:register_mob("mobs_turtles:turtle", {
 			self.animation.speed_normal, 0)
 
 		minetest.after(5, function()
+
 			if self and self.object then
 				self.state = "stand"
 			end
@@ -78,6 +80,7 @@ mobs:register_mob("mobs_turtles:turtle", {
 	end
 })
 
+
 mobs:spawn({
 	name = "mobs_turtles:turtle",
 	nodes = {
@@ -93,10 +96,12 @@ mobs:spawn({
 	interval = 30,
 	chance = l_spawn_chance,
 	min_height = 1,
-	max_height = 10,
+	max_height = 10
 })
 
+
 mobs:register_egg("mobs_turtles:turtle", "Turtle", "default_grass.png", 1)
+
 
 -- sea turtle
 mobs:register_mob("mobs_turtles:seaturtle", {
@@ -138,12 +143,13 @@ mobs:register_mob("mobs_turtles:seaturtle", {
 		hide_end = 100
 	},
 	drops = {
-		{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
+		{name = "mobs:meat_raw", chance = 1, min = 1, max = 3}
 	},
 	on_rightclick = function(self, clicker)
 		mobs:capture_mob(self, clicker, 0, 0, 80, true, nil)
 	end
 })
+
 
 mobs:spawn({
 	name = "mobs_turtles:seaturtle",
@@ -155,7 +161,8 @@ mobs:spawn({
 	min_light = 5,
 	interval = 30,
 	chance = l_spawn_chance,
-	max_height = 0,
+	max_height = 0
 })
+
 
 mobs:register_egg("mobs_turtles:seaturtle", "Sea Turtle", "default_water.png", 1)

@@ -77,8 +77,8 @@ if ENABLE_SHARK_LARGE then
 		jump = false,
 		stepheight = 0,
 		drops = {
-			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
-		},
+			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3}
+		}
 	})
 
 	mobs:spawn({
@@ -90,12 +90,13 @@ if ENABLE_SHARK_LARGE then
 		},
 		interval = 30,
 		chance = l_spawn_chance,
-		max_height = 0,
+		max_height = 0
 	})
 
 	mobs:register_egg("mobs_sharks:shark_lg", "Shark (large)",
 			"mob_shark_shark_item.png", 0)
 end
+
 
 -- medium
 if ENABLE_SHARK_MEDIUM then
@@ -137,8 +138,8 @@ if ENABLE_SHARK_MEDIUM then
 		jump = false,
 		stepheight = 0,
 		drops = {
-			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
-		},
+			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3}
+		}
 	})
 
 	mobs:spawn({
@@ -150,12 +151,13 @@ if ENABLE_SHARK_MEDIUM then
 		},
 		interval = 30,
 		chance = l_spawn_chance,
-		max_height = 0,
+		max_height = 0
 	})
 
 	mobs:register_egg("mobs_sharks:shark_md", "Shark (medium)",
 			"mob_shark_shark_item.png", 0)
 end
+
 
 -- small
 if ENABLE_SHARK_SMALL then
@@ -197,8 +199,8 @@ if ENABLE_SHARK_SMALL then
 		jump = false,
 		stepheight = 0,
 		drops = {
-			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
-		},
+			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3}
+		}
 	})
 
 	mobs:spawn({
@@ -210,7 +212,7 @@ if ENABLE_SHARK_SMALL then
 		},
 		interval = 30,
 		chance = l_spawn_chance,
-		max_height = 0,
+		max_height = 0
 	})
 
 	mobs:register_egg("mobs_sharks:shark_sm", "Shark (small)",

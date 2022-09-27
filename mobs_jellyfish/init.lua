@@ -26,10 +26,10 @@ mobs:register_mob("mobs_jellyfish:jellyfish", {
 	light_damage = 0,
 
 	on_rightclick = function(self, clicker)
-		mobs:capture_mob(self, clicker, 80, 100, 0,
-				true, "mobs_jellyfish:jellyfish")
+		mobs:capture_mob(self, clicker, 80, 100, 0, true, "mobs_jellyfish:jellyfish")
 	end
 })
+
 
 mobs:spawn({
 	name = "mobs_jellyfish:jellyfish",
@@ -38,7 +38,8 @@ mobs:spawn({
 	min_light = 5,
 	interval = 30,
 	chance = 10000,
-	max_height = 0,
+	max_height = 0
 })
+
 
 mobs:register_egg("mobs_jellyfish:jellyfish", "Jellyfish", "jellyfish_inv.png", 0)

@@ -19,6 +19,7 @@ if not ENABLE_SWIMMERS then
 	l_spawn_chance = l_spawn_chance - 20000
 end
 
+
 -- no float
 if ENABLE_WALKERS then
 
@@ -48,16 +49,21 @@ if ENABLE_WALKERS then
 		lava_damage = 10,
 		light_damage = 0,
 		animation = {
-			speed_normal = 24,	speed_run = 24,
-			stand_start = 0,	stand_end = 80,
-			walk_start = 81,	walk_end = 170,
-			run_start = 81,		run_end = 170,
-			punch_start = 205,	punch_end = 220
+			speed_normal = 24,
+			speed_run = 24,
+			stand_start = 0,
+			stand_end = 80,
+			walk_start = 81,
+			walk_end = 170,
+			run_start = 81,
+			run_end = 170,
+			punch_start = 205,
+			punch_end = 220
 		},
 		drops = {
 			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
-			{name = "mobs:leather", chance = 1, min = 0, max = 2},
-		},
+			{name = "mobs:leather", chance = 1, min = 0, max = 2}
+		}
 	})
 
 	mobs:spawn({
@@ -73,11 +79,12 @@ if ENABLE_WALKERS then
 		interval = 30,
 		chance = l_spawn_chance,
 		min_height = 0,
-		max_height = 10,
+		max_height = 10
 	})
 
 	mobs:register_egg("mobs_crocs:crocodile", "Crocodile", "default_grass.png", 1)
 end
+
 
 -- float
 if ENABLE_FLOATERS then
@@ -107,16 +114,21 @@ if ENABLE_FLOATERS then
 		lava_damage = 10,
 		light_damage = 0,
 		animation = {
-			speed_normal = 24,	speed_run = 24,
-			stand_start = 0,	stand_end = 80,
-			walk_start = 81,	walk_end = 170,
-			run_start = 81,		run_end = 170,
-			punch_start = 205,	punch_end = 220
+			speed_normal = 24,
+			speed_run = 24,
+			stand_start = 0,
+			stand_end = 80,
+			walk_start = 81,
+			walk_end = 170,
+			run_start = 81,
+			run_end = 170,
+			punch_start = 205,
+			punch_end = 220
 		},
 		drops = {
 			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
-			{name = "mobs:leather", chance = 1, min = 0, max = 2},
-		},
+			{name = "mobs:leather", chance = 1, min = 0, max = 2}
+		}
 	})
 
 	mobs:spawn({
@@ -130,12 +142,13 @@ if ENABLE_FLOATERS then
 		interval = 30,
 		chance = l_spawn_chance,
 		min_height = -3,
-		max_height = 10,
+		max_height = 10
 	})
 
 	mobs:register_egg("mobs_crocs:crocodile_float", "Crocodile (floater)",
-		"default_grass.png", 1)
+			"default_grass.png", 1)
 end
+
 
 -- swim
 if ENABLE_SWIMMERS then
@@ -167,16 +180,22 @@ if ENABLE_SWIMMERS then
 		lava_damage = 10,
 		light_damage = 0,
 		animation = {
-			speed_normal = 24,	speed_run = 24,
-			stand_start = 0,	stand_end = 80,
-			walk_start = 81,	walk_end = 170,
-			fly_start = 81,		fly_end = 170,
-			run_start = 81,		run_end = 170,
-			punch_start = 205,	punch_end = 220
+			speed_normal = 24,
+			speed_run = 24,
+			stand_start = 0,
+			stand_end = 80,
+			walk_start = 81,
+			walk_end = 170,
+			fly_start = 81,
+			fly_end = 170,
+			run_start = 81,
+			run_end = 170,
+			punch_start = 205,
+			punch_end = 220
 		},
 		drops = {
 			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3},
-			{name = "mobs:leather", chance = 1, min = 0, max = 2},
+			{name = "mobs:leather", chance = 1, min = 0, max = 2}
 		},
 	})
 
@@ -187,9 +206,9 @@ if ENABLE_SWIMMERS then
 		interval = 30,
 		chance = l_spawn_chance,
 		min_height = -8,
-		max_height = 10,
+		max_height = 10
 	})
 
 	mobs:register_egg("mobs_crocs:crocodile_swim", "Crocodile (swimmer)",
-		"default_grass.png", 1)
+			"default_grass.png", 1)
 end

@@ -27,6 +27,7 @@ if SPRITE_VERSION then
 	l_trop_textures = {{"animal_fish_blue_white_fish_blue_white_item.png"}}
 end
 
+
 -- Clownfish
 mobs:register_mob("mobs_fish:clownfish", {
 	type = "animal",
@@ -84,6 +85,7 @@ mobs:register_mob("mobs_fish:clownfish", {
 	end
 })
 
+
 mobs:spawn({
 	name = "mobs_fish:clownfish",
 	nodes = {
@@ -98,8 +100,10 @@ mobs:spawn({
 	active_object_count = 5
 })
 
+
 mobs:register_egg("mobs_fish:clownfish", "Clownfish",
-	"animal_clownfish_clownfish_item.png", 0)
+		"animal_clownfish_clownfish_item.png", 0)
+
 
 -- Tropical fish
 mobs:register_mob("mobs_fish:tropical", {
@@ -156,6 +160,7 @@ mobs:register_mob("mobs_fish:tropical", {
 	end
 })
 
+
 mobs:spawn({
 	name = "mobs_fish:tropical",
 	nodes = {
@@ -170,8 +175,9 @@ mobs:spawn({
 	active_object_count = 5
 })
 
+
 mobs:register_egg("mobs_fish:tropical", "Tropical fish",
-	"animal_fish_blue_white_fish_blue_white_item.png", 0)
+		"animal_fish_blue_white_fish_blue_white_item.png", 0)
 
 
 local function add_food_group(item)
