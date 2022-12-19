@@ -43,3 +43,6 @@ mobs:spawn({
 
 
 mobs:register_egg("mobs_jellyfish:jellyfish", "Jellyfish", "jellyfish_inv.png", 0)
+
+
+print("[MOD] Mobs Redo Jellyfish loaded")

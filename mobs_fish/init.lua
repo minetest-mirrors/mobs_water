@@ -192,3 +192,6 @@ end
 
 add_food_group("mobs_fish:tropical")
 add_food_group("mobs_fish:clownfish")
+
+
+print("[MOD] Mobs Redo Fish loaded")

@@ -133,3 +133,6 @@ if croc_swimmers then
 		max_height = 10
 	})
 end
+
+
+print("[MOD] Mobs Redo Crocs loaded")

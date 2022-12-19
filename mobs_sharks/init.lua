@@ -218,3 +218,6 @@ if ENABLE_SHARK_SMALL then
 	mobs:register_egg("mobs_sharks:shark_sm", "Shark (small)",
 			"mob_shark_shark_item.png", 0)
 end
+
+
+print("[MOD] Mobs Redo Sharks loaded")

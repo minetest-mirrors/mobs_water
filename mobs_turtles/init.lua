@@ -166,3 +166,6 @@ mobs:spawn({
 
 
 mobs:register_egg("mobs_turtles:seaturtle", "Sea Turtle", "default_water.png", 1)
+
+
+print("[MOD] Mobs Redo Turtles loaded")
