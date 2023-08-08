@@ -65,8 +65,8 @@ mobs:register_mob("mobs_fish:clownfish", {
 	},
 
 	on_rightclick = function(self, clicker)
-		mobs:capture_mob(self, clicker, 25, 80, 0, true,
-				"mobs_fish:clownfish")
+
+		mobs:capture_mob(self, clicker, 25, 80, 0, true, "mobs_fish:clownfish")
 	end,
 
 	on_flop = function(self)
@@ -140,8 +140,8 @@ mobs:register_mob("mobs_fish:tropical", {
 	},
 
 	on_rightclick = function(self, clicker)
-		mobs:capture_mob(self, clicker, 25, 80, 0, true,
-				"mobs_fish:tropical")
+
+		mobs:capture_mob(self, clicker, 25, 80, 0, true, "mobs_fish:tropical")
 	end,
 
 	on_flop = function(self)
