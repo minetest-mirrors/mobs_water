@@ -54,13 +54,13 @@ mobs:register_mob("mobs_turtles:turtle", {
 
 	on_rightclick = function(self, clicker)
 
+		if mobs:feed_tame(self, clicker, 5, false, true) then return end
+		if mobs:capture_mob(self, clicker, nil, 80, 100, true, nil) then return end
+
 		self.state = "hide"
 
-		mobs:set_velocity(self, 0)
-
-		self.object:set_animation(
-			{x = self.animation.hide_start, y = self.animation.hide_end},
-			self.animation.speed_normal, 0)
+		self:set_velocity(0)
+		self:set_animation("hide")
 
 		minetest.after(5, function()
 
@@ -68,14 +68,12 @@ mobs:register_mob("mobs_turtles:turtle", {
 				self.state = "stand"
 			end
 		end)
-
-		mobs:capture_mob(self, clicker, 0, 80, 100, true, nil)
 	end,
 
 	do_custom = function(self, dtime)
 
 		if self.state == "hide" then
-			mobs:set_velocity(self, 0)
+			self:set_velocity(0)
 		end
 	end
 })
