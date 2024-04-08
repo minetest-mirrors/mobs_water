@@ -1,10 +1,10 @@
 
 mobs:register_mob("mobs_jellyfish:jellyfish", {
-	type = "animal",
+	type = "monster",
 	attack_type = "dogfight",
 	passive = false,
 	damage = 5,
-	reach = 1,
+	reach = 1.1,
 	hp_min = 5,
 	hp_max = 10,
 	armor = 100,
@@ -19,6 +19,7 @@ mobs:register_mob("mobs_jellyfish:jellyfish", {
 	run_velocity = 0.1,
 	fly = true,
 	fly_in = "default:water_source",
+	stepheight = 0,
 	fall_speed = 0,
 	view_range = 10,
 	water_damage = 0,
