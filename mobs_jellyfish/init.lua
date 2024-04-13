@@ -45,5 +45,6 @@ mobs:spawn({
 
 mobs:register_egg("mobs_jellyfish:jellyfish", "Jellyfish", "jellyfish_inv.png", 0)
 
+minetest.register_alias("mobs_jellyfish:jellyfish_set", "mobs_jellyfish:jellyfish")
 
 print("[MOD] Mobs Redo Jellyfish loaded")
