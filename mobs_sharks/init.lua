@@ -1,4 +1,6 @@
+
 -- local variables
+
 local l_skins = {
 	{
 		"(shark_first.png^[colorize:#404040:150" -- dark grey
@@ -17,10 +19,10 @@ local l_skins = {
 	}
 }
 
-
 local l_spawn_chance = 60000
 
 -- load settings
+
 dofile(minetest.get_modpath("mobs_sharks") .. "/SETTINGS.txt")
 
 if not ENABLE_SHARK_LARGE then
@@ -35,8 +37,12 @@ if not ENABLE_SHARK_SMALL then
 	l_spawn_chance = l_spawn_chance - 20000
 end
 
+-- Mineclone check
+
+local mod_mcl = minetest.get_modpath("mcl_core")
 
 -- large
+
 if ENABLE_SHARK_LARGE then
 
 	mobs:register_mob("mobs_sharks:shark_lg", {
@@ -55,7 +61,7 @@ if ENABLE_SHARK_LARGE then
 		walk_velocity = 4,
 		run_velocity = 6,
 		fly = true,
-		fly_in = "default:water_source",
+		fly_in = (mod_mcl and "mcl_core:water_source" or "default:water_source"),
 		fall_speed = 0,
 		rotate = 270,
 		view_range = 10,
@@ -63,31 +69,24 @@ if ENABLE_SHARK_LARGE then
 		lava_damage = 10,
 		light_damage = 0,
 		animation = {
-			speed_normal = 24,
-			speed_run = 24,
-			stand_start = 1,
-			stand_end = 80,
-			walk_start = 80,
-			walk_end = 160,
-			fly_start = 80,
-			fly_end = 160,
-			run_start = 80,
-			run_end = 160
+			speed_normal = 24, speed_run = 24,
+			stand_start = 1, stand_end = 80,
+			walk_start = 80, walk_end = 160,
+			fly_start = 80, fly_end = 160,
+			run_start = 80, run_end = 160
 		},
 		jump = false,
 		stepheight = 0,
 		drops = {
-			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3}
+			{name = (mod_mcl and "mcl_mobitems:beef" or "mobs:meat_raw"),
+					chance = 1, min = 1, max = 3}
 		}
 	})
 
 	mobs:spawn({
 		name = "mobs_sharks:shark_lg",
-		nodes = {"default:water_flowing","default:water_source"},
-		neighbors = {
-			"default:water_flowing", "default:water_source",
-			"seawrecks:woodship", "seawrecks:uboot"
-		},
+		nodes = {"group:water"},
+		neighbors = {"group:water", "seawrecks:woodship", "seawrecks:uboot"},
 		interval = 30,
 		chance = l_spawn_chance,
 		max_height = 0
@@ -97,8 +96,8 @@ if ENABLE_SHARK_LARGE then
 			"mob_shark_shark_item.png", 0)
 end
 
-
 -- medium
+
 if ENABLE_SHARK_MEDIUM then
 
 	mobs:register_mob("mobs_sharks:shark_md", {
@@ -118,7 +117,7 @@ if ENABLE_SHARK_MEDIUM then
 		walk_velocity = 2,
 		run_velocity = 4,
 		fly = true,
-		fly_in = "default:water_source",
+		fly_in = (mod_mcl and "mcl_core:water_source" or "default:water_source"),
 		fall_speed = -1,
 		rotate = 270,
 		view_range = 10,
@@ -126,29 +125,23 @@ if ENABLE_SHARK_MEDIUM then
 		lava_damage = 10,
 		light_damage = 0,
 		animation = {
-			speed_normal = 24,
-			speed_run = 24,
-			stand_start = 1,
-			stand_end = 80,
-			walk_start = 80,
-			walk_end = 160,
-			run_start = 80,
-			run_end = 160
+			speed_normal = 24, speed_run = 24,
+			stand_start = 1, stand_end = 80,
+			walk_start = 80, walk_end = 160,
+			run_start = 80, run_end = 160
 		},
 		jump = false,
 		stepheight = 0,
 		drops = {
-			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3}
+			{name = (mod_mcl and "mcl_mobitems:beef" or "mobs:meat_raw"),
+					chance = 1, min = 1, max = 3}
 		}
 	})
 
 	mobs:spawn({
 		name = "mobs_sharks:shark_md",
-		nodes = {"default:water_flowing","default:water_source"},
-		neighbors = {
-			"default:water_flowing", "default:water_source",
-			"seawrecks:woodship", "seawrecks:uboot"
-		},
+		nodes = {"group:water"},
+		neighbors = {"group:water", "seawrecks:woodship", "seawrecks:uboot"},
 		interval = 30,
 		chance = l_spawn_chance,
 		max_height = 0
@@ -158,8 +151,8 @@ if ENABLE_SHARK_MEDIUM then
 			"mob_shark_shark_item.png", 0)
 end
 
-
 -- small
+
 if ENABLE_SHARK_SMALL then
 
 	mobs:register_mob("mobs_sharks:shark_sm", {
@@ -179,7 +172,7 @@ if ENABLE_SHARK_SMALL then
 		walk_velocity = 2,
 		run_velocity = 4,
 		fly = true,
-		fly_in = "default:water_source",
+		fly_in = (mod_mcl and "mcl_core:water_source" or "default:water_source"),
 		fall_speed = -1,
 		rotate = 270,
 		view_range = 10,
@@ -187,29 +180,23 @@ if ENABLE_SHARK_SMALL then
 		lava_damage = 10,
 		light_damage = 0,
 		animation = {
-			speed_normal = 24,
-			speed_run = 24,
-			stand_start = 1,
-			stand_end = 80,
-			walk_start = 80,
-			walk_end = 160,
-			run_start = 80,
-			run_end = 160
+			speed_normal = 24, speed_run = 24,
+			stand_start = 1, stand_end = 80,
+			walk_start = 80, walk_end = 160,
+			run_start = 80, run_end = 160
 		},
 		jump = false,
 		stepheight = 0,
 		drops = {
-			{name = "mobs:meat_raw", chance = 1, min = 1, max = 3}
+			{name = (mod_mcl and "mcl_mobitems:beef" or "mobs:meat_raw"),
+					chance = 1, min = 1, max = 3}
 		}
 	})
 
 	mobs:spawn({
 		name = "mobs_sharks:shark_sm",
-		nodes = {"default:water_flowing","default:water_source"},
-		neighbors = {
-			"default:water_flowing", "default:water_source",
-			"seawrecks:woodship", "seawrecks:uboot"
-		},
+		nodes = {"group:water"},
+		neighbors = {"group:water", "seawrecks:woodship", "seawrecks:uboot"},
 		interval = 30,
 		chance = l_spawn_chance,
 		max_height = 0

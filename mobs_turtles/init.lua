@@ -1,4 +1,6 @@
 
+-- settings
+
 local l_skins = {
 	{"turtle1.png^turtle2.png^turtle3.png^turtle4.png"
 		.. "^turtle5.png^turtle6.png^turtle7.png"},
@@ -11,8 +13,12 @@ local l_skins = {
 
 local l_spawn_chance = 30000
 
+-- Mineclone check
+
+local mod_mcl = minetest.get_modpath("mcl_core")
 
 -- land turtle
+
 mobs:register_mob("mobs_turtles:turtle", {
 	type = "animal",
 	passive = true,
@@ -36,21 +42,17 @@ mobs:register_mob("mobs_turtles:turtle", {
 	light_damage = 0,
 	fall_damage = 1,
 	animation = {
-		speed_normal = 24,
-		speed_run = 24,
-		stand_start = 1,
-		stand_end = 50,
-		walk_start = 60,
-		walk_end = 90,
-		run_start = 60,
-		run_end = 90,
-		hide_start = 95,
-		hide_end = 100
+		speed_normal = 24, speed_run = 24,
+		stand_start = 1,stand_end = 50,
+		walk_start = 60, walk_end = 90,
+		run_start = 60, run_end = 90,
+		hide_start = 95, hide_end = 100
 	},
 	drops = {
-		{name = "mobs:meat_raw", chance = 1, min = 1, max = 3}
+		{name = (mod_mcl and "mcl_mobitems:beef" or "mobs:meat_raw"),
+				chance = 1, min = 1, max = 3}
 	},
-	follow = "farming:carrot",
+	follow = (mod_mcl and "mcl_farming:carrot_item" or "farming:carrot"),
 
 	on_rightclick = function(self, clicker)
 
@@ -72,22 +74,21 @@ mobs:register_mob("mobs_turtles:turtle", {
 
 	do_custom = function(self, dtime)
 
-		if self.state == "hide" then
+		if self and self.state == "hide" then
 			self:set_velocity(0)
 		end
 	end
 })
 
+-- spawn in world
 
 mobs:spawn({
 	name = "mobs_turtles:turtle",
-	nodes = {
-		"default:dirt_with_grass", "default:jungle_grass",
-		"default:sand", "default:desert_sand"
-	},
+	nodes = {(mod_mcl and "group:shovely" or "group:crumbly")},
 	neighbors = {
-		"default:dirt_with_grass", "default:jungle_grass", "default:sand",
-		"default:desert_sand", "default:papyrus", "default:cactus",
+		(mod_mcl and "groups:shovely" or "group:crumbly"),
+		(mod_mcl and "mcl_core:reeds" or "default:papyrus"),
+		(mod_mcl and "mcl_core:cactus" or "default:cactus"),
 		"dryplants:juncus", "dryplants:reedmace"
 	},
 	min_light = 5,
@@ -97,11 +98,12 @@ mobs:spawn({
 	max_height = 10
 })
 
+-- spawn egg
 
 mobs:register_egg("mobs_turtles:turtle", "Turtle", "default_grass.png", 1)
 
-
 -- sea turtle
+
 mobs:register_mob("mobs_turtles:seaturtle", {
 	type = "animal",
 	passive = true,
@@ -121,7 +123,7 @@ mobs:register_mob("mobs_turtles:seaturtle", {
 	stepheight = 1,
 	jump = false,
 	fly = true,
-	fly_in = "default:water_source",
+	fly_in = (mod_mcl and "mcl_core:water_source" or "default:water_source"),
 	fall_speed = 0,
 	floats = 1,
 	water_damage = 0,
@@ -129,32 +131,28 @@ mobs:register_mob("mobs_turtles:seaturtle", {
 	light_damage = 0,
 	fall_damage = 0,
 	animation = {
-		speed_normal = 24,
-		speed_run = 24,
-		stand_start = 1,
-		stand_end = 50,
-		walk_start = 60,
-		walk_end = 90,
-		run_start = 60,
-		run_end = 90,
-		hide_start = 95,
-		hide_end = 100
+		speed_normal = 24, speed_run = 24,
+		stand_start = 1, stand_end = 50,
+		walk_start = 60, walk_end = 90,
+		run_start = 60, run_end = 90,
+		hide_start = 95, hide_end = 100
 	},
 	drops = {
-		{name = "mobs:meat_raw", chance = 1, min = 1, max = 3}
+		{name = (mod_mcl and "mcl_mobitems:beef" or "mobs:meat_raw"),
+				chance = 1, min = 1, max = 3}
 	},
 	on_rightclick = function(self, clicker)
 		mobs:capture_mob(self, clicker, 0, 0, 80, true, nil)
 	end
 })
 
+-- spawn in world
 
 mobs:spawn({
 	name = "mobs_turtles:seaturtle",
-	nodes = {"default:water_flowing","default:water_source"},
+	nodes = {"group:water"},
 	neighbors = {
-		"default:water_flowing", "default:water_source", "group:seaplants",
-		"seawrecks:woodship", "seawrecks:uboot"
+		"group:water", "group:seaplants", "seawrecks:woodship", "seawrecks:uboot"
 	},
 	min_light = 5,
 	interval = 30,
@@ -162,6 +160,7 @@ mobs:spawn({
 	max_height = 0
 })
 
+-- spawn egg
 
 mobs:register_egg("mobs_turtles:seaturtle", "Sea Turtle", "default_water.png", 1)
 

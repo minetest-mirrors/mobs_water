@@ -1,4 +1,10 @@
 
+-- mineclone check
+
+local mod_mcl = minetest.get_modpath("mcl_core")
+
+-- jellyfish definition
+
 mobs:register_mob("mobs_jellyfish:jellyfish", {
 	type = "monster",
 	attack_type = "dogfight",
@@ -18,7 +24,7 @@ mobs:register_mob("mobs_jellyfish:jellyfish", {
 	walk_velocity = 0.1,
 	run_velocity = 0.1,
 	fly = true,
-	fly_in = "default:water_source",
+	fly_in = (mod_mcl and "mcl_core:water_source" or "default:water_source"),
 	stepheight = 0,
 	fall_speed = 0,
 	view_range = 10,
@@ -31,20 +37,25 @@ mobs:register_mob("mobs_jellyfish:jellyfish", {
 	end
 })
 
+-- spawn in world
 
 mobs:spawn({
 	name = "mobs_jellyfish:jellyfish",
-	nodes = {"default:water_source"},
-	neighbors = {"default:water_flowing", "default:water_source"},
+	nodes = {(mod_mcl and "mcl_core:water_source" or "default:water_source")},
+	neighbors = {"group:water"},
 	min_light = 5,
 	interval = 30,
 	chance = 10000,
 	max_height = 0
 })
 
+-- spawn egg
 
 mobs:register_egg("mobs_jellyfish:jellyfish", "Jellyfish", "jellyfish_inv.png", 0)
 
+-- compatibility
+
 minetest.register_alias("mobs_jellyfish:jellyfish_set", "mobs_jellyfish:jellyfish")
+
 
 print("[MOD] Mobs Redo Jellyfish loaded")
