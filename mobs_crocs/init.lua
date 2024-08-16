@@ -67,21 +67,6 @@ if croc_walkers then
 	mobs:register_mob("mobs_crocs:crocodile", table.copy(croc_def))
 
 	mobs:register_egg("mobs_crocs:crocodile", "Crocodile (walk)", "default_grass.png", 1)
-
-	mobs:spawn({
-		name = "mobs_crocs:crocodile",
-		nodes = {
-			(mod_mcl and "group:shovely" or "group:crumbly")
-		},
-		neighbors = {
-			"group:water", "dryplants:juncus", "dryplants:reedmace",
-			(mod_mcl and "mcl_core:reeds" or "default:papyrus")
-		},
-		interval = 30,
-		chance = croc_spawn_chance,
-		min_height = 0,
-		max_height = 10
-	})
 end
 
 
@@ -95,20 +80,6 @@ if croc_floaters then
 	mobs:register_mob("mobs_crocs:crocodile_float", table.copy(croc_def))
 
 	mobs:register_egg("mobs_crocs:crocodile_float", "Crocodile (float)", "default_grass.png", 1)
-
-	mobs:spawn({
-		name = "mobs_crocs:crocodile_float",
-		nodes = {"group:water"},
-		neighbors = {
-			(mcl_core and "group:shovely" or "group:crumbly"),
-			"group:seaplants", "dryplants:juncus", "dryplants:reedmace",
-			(mod_mcl and "mcl_core:reeds" or "default:papyrus")
-		},
-		interval = 30,
-		chance = croc_spawn_chance,
-		min_height = -3,
-		max_height = 10
-	})
 end
 
 
@@ -125,17 +96,63 @@ if croc_swimmers then
 	mobs:register_mob("mobs_crocs:crocodile_swim", table.copy(croc_def))
 
 	mobs:register_egg("mobs_crocs:crocodile_swim", "Crocodile (swim)", "default_grass.png", 1)
-
-	mobs:spawn({
-		name = "mobs_crocs:crocodile_swim",
-		nodes = {"group:water"},
-		neighbors = {(mcl_core and "group:shovely" or "group:crumbly")},
-		interval = 30,
-		chance = croc_spawn_chance,
-		min_height = -8,
-		max_height = 10
-	})
 end
 
+-- Check for custom spawn.lua
+
+local MP = minetest.get_modpath(minetest.get_current_modname()) .. "/"
+local input = io.open(MP .. "spawn.lua", "r")
+
+if input then
+	input:close() ; input = nil ; dofile(MP .. "spawn.lua")
+else
+	if croc_walkers then
+
+		mobs:spawn({
+			name = "mobs_crocs:crocodile",
+			nodes = {
+				(mod_mcl and "group:shovely" or "group:crumbly")
+			},
+			neighbors = {
+				"group:water", "dryplants:juncus", "dryplants:reedmace",
+				(mod_mcl and "mcl_core:reeds" or "default:papyrus")
+			},
+			interval = 30,
+			chance = croc_spawn_chance,
+			min_height = 0,
+			max_height = 10
+		})
+	end
+
+	if croc_floaters then
+
+		mobs:spawn({
+			name = "mobs_crocs:crocodile_float",
+			nodes = {"group:water"},
+			neighbors = {
+				(mcl_core and "group:shovely" or "group:crumbly"),
+				"group:seaplants", "dryplants:juncus", "dryplants:reedmace",
+				(mod_mcl and "mcl_core:reeds" or "default:papyrus")
+			},
+			interval = 30,
+			chance = croc_spawn_chance,
+			min_height = -3,
+			max_height = 10
+		})
+	end
+
+	if croc_swimmers then
+
+		mobs:spawn({
+			name = "mobs_crocs:crocodile_swim",
+			nodes = {"group:water"},
+			neighbors = {(mcl_core and "group:shovely" or "group:crumbly")},
+			interval = 30,
+			chance = croc_spawn_chance,
+			min_height = -8,
+			max_height = 10
+		})
+	end
+end
 
 print("[MOD] Mobs Redo Crocs loaded")

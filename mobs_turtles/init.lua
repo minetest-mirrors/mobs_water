@@ -80,24 +80,6 @@ mobs:register_mob("mobs_turtles:turtle", {
 	end
 })
 
--- spawn in world
-
-mobs:spawn({
-	name = "mobs_turtles:turtle",
-	nodes = {(mod_mcl and "group:shovely" or "group:crumbly")},
-	neighbors = {
-		(mod_mcl and "groups:shovely" or "group:crumbly"),
-		(mod_mcl and "mcl_core:reeds" or "default:papyrus"),
-		(mod_mcl and "mcl_core:cactus" or "default:cactus"),
-		"dryplants:juncus", "dryplants:reedmace"
-	},
-	min_light = 5,
-	interval = 30,
-	chance = l_spawn_chance,
-	min_height = 1,
-	max_height = 10
-})
-
 -- spawn egg
 
 mobs:register_egg("mobs_turtles:turtle", "Turtle", "default_grass.png", 1)
@@ -146,23 +128,47 @@ mobs:register_mob("mobs_turtles:seaturtle", {
 	end
 })
 
--- spawn in world
-
-mobs:spawn({
-	name = "mobs_turtles:seaturtle",
-	nodes = {"group:water"},
-	neighbors = {
-		"group:water", "group:seaplants", "seawrecks:woodship", "seawrecks:uboot"
-	},
-	min_light = 5,
-	interval = 30,
-	chance = l_spawn_chance,
-	max_height = 0
-})
-
 -- spawn egg
 
 mobs:register_egg("mobs_turtles:seaturtle", "Sea Turtle", "default_water.png", 1)
 
+-- Check for custom spawn.lua
+
+local MP = minetest.get_modpath(minetest.get_current_modname()) .. "/"
+local input = io.open(MP .. "spawn.lua", "r")
+
+if input then
+	input:close() ; input = nil ; dofile(MP .. "spawn.lua")
+else
+	-- land turtle
+	mobs:spawn({
+		name = "mobs_turtles:turtle",
+		nodes = {(mod_mcl and "group:shovely" or "group:crumbly")},
+		neighbors = {
+			(mod_mcl and "groups:shovely" or "group:crumbly"),
+			(mod_mcl and "mcl_core:reeds" or "default:papyrus"),
+			(mod_mcl and "mcl_core:cactus" or "default:cactus"),
+			"dryplants:juncus", "dryplants:reedmace"
+		},
+		min_light = 5,
+		interval = 30,
+		chance = l_spawn_chance,
+		min_height = 1,
+		max_height = 10
+	})
+
+	-- sea turtle
+	mobs:spawn({
+		name = "mobs_turtles:seaturtle",
+		nodes = {"group:water"},
+		neighbors = {
+			"group:water", "group:seaplants", "seawrecks:woodship", "seawrecks:uboot"
+		},
+		min_light = 5,
+		interval = 30,
+		chance = l_spawn_chance,
+		max_height = 0
+	})
+end
 
 print("[MOD] Mobs Redo Turtles loaded")

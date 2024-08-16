@@ -84,22 +84,6 @@ mobs:register_mob("mobs_fish:clownfish", {
 	end
 })
 
--- spawn in world
-
-mobs:spawn({
-	name = "mobs_fish:clownfish",
-	nodes = {"group:water"},
-	neighbors =  {
-		(mod_mcl and "group:shovely" or "group:crumbly"),
-		"group:seaplants", "group:seacoral"
-	},
-	min_light = 5,
-	interval = 30,
-	chance = l_spawn_chance,
-	max_height = l_water_level,
-	active_object_count = 5
-})
-
 -- spawn egg
 
 mobs:register_egg("mobs_fish:clownfish", "Clownfish", "animal_clownfish_clownfish_item.png", 0)
@@ -156,26 +140,49 @@ mobs:register_mob("mobs_fish:tropical", {
 	end
 })
 
--- spawn in world
-
-mobs:spawn({
-	name = "mobs_fish:tropical",
-	nodes = {"group:water"},
-	neighbors =  {
-		(mod_mcl and "group:shovely" or "group:crumbly"),
-		"group:seaplants", "group:seacoral"
-	},
-	min_light = 5,
-	interval = 30,
-	chance = l_spawn_chance,
-	max_height = l_water_level,
-	active_object_count = 5
-})
-
 -- spawn egg
 
 mobs:register_egg("mobs_fish:tropical", "Tropical fish",
 		"animal_fish_blue_white_fish_blue_white_item.png", 0)
+
+-- Check for custom spawn.lua
+
+local MP = minetest.get_modpath(minetest.get_current_modname()) .. "/"
+local input = io.open(MP .. "spawn.lua", "r")
+
+if input then
+	input:close() ; input = nil ; dofile(MP .. "spawn.lua")
+else
+	-- clownfish
+	mobs:spawn({
+		name = "mobs_fish:clownfish",
+		nodes = {"group:water"},
+		neighbors =  {
+			(mod_mcl and "group:shovely" or "group:crumbly"),
+			"group:seaplants", "group:seacoral"
+		},
+		min_light = 5,
+		interval = 30,
+		chance = l_spawn_chance,
+		max_height = l_water_level,
+		active_object_count = 5
+	})
+
+	-- tropical fish
+	mobs:spawn({
+		name = "mobs_fish:tropical",
+		nodes = {"group:water"},
+		neighbors =  {
+			(mod_mcl and "group:shovely" or "group:crumbly"),
+			"group:seaplants", "group:seacoral"
+		},
+		min_light = 5,
+		interval = 30,
+		chance = l_spawn_chance,
+		max_height = l_water_level,
+		active_object_count = 5
+	})
+end
 
 -- helper function
 

@@ -37,17 +37,24 @@ mobs:register_mob("mobs_jellyfish:jellyfish", {
 	end
 })
 
--- spawn in world
+-- Check for custom spawn.lua
 
-mobs:spawn({
-	name = "mobs_jellyfish:jellyfish",
-	nodes = {(mod_mcl and "mcl_core:water_source" or "default:water_source")},
-	neighbors = {"group:water"},
-	min_light = 5,
-	interval = 30,
-	chance = 10000,
-	max_height = 0
-})
+local MP = minetest.get_modpath(minetest.get_current_modname()) .. "/"
+local input = io.open(MP .. "spawn.lua", "r")
+
+if input then
+	input:close() ; input = nil ; dofile(MP .. "spawn.lua")
+else
+	mobs:spawn({
+		name = "mobs_jellyfish:jellyfish",
+		nodes = {(mod_mcl and "mcl_core:water_source" or "default:water_source")},
+		neighbors = {"group:water"},
+		min_light = 5,
+		interval = 30,
+		chance = 10000,
+		max_height = 0
+	})
+end
 
 -- spawn egg
 

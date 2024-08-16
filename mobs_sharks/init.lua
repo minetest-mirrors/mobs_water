@@ -23,17 +23,19 @@ local l_spawn_chance = 60000
 
 -- load settings
 
-dofile(minetest.get_modpath("mobs_sharks") .. "/SETTINGS.txt")
+local ENABLE_LARGE = minetest.settings:get_bool("mobs_sharks.enable_large") ~= false
+local ENABLE_MEDIUM = minetest.settings:get_bool("mobs_sharks.enable_medium") ~= false
+local ENABLE_SMALL = minetest.settings:get_bool("mobs_sharks.enable_small") ~= false
 
-if not ENABLE_SHARK_LARGE then
+if not ENABLE_LARGE then
 	l_spawn_chance = l_spawn_chance - 20000
 end
 
-if not ENABLE_SHARK_MEDIUM then
+if not ENABLE_MEDIUM then
 	l_spawn_chance = l_spawn_chance - 20000
 end
 
-if not ENABLE_SHARK_SMALL then
+if not ENABLE_SMALL then
 	l_spawn_chance = l_spawn_chance - 20000
 end
 
@@ -43,7 +45,7 @@ local mod_mcl = minetest.get_modpath("mcl_core")
 
 -- large
 
-if ENABLE_SHARK_LARGE then
+if ENABLE_LARGE then
 
 	mobs:register_mob("mobs_sharks:shark_lg", {
 		type = "monster",
@@ -83,22 +85,13 @@ if ENABLE_SHARK_LARGE then
 		}
 	})
 
-	mobs:spawn({
-		name = "mobs_sharks:shark_lg",
-		nodes = {"group:water"},
-		neighbors = {"group:water", "seawrecks:woodship", "seawrecks:uboot"},
-		interval = 30,
-		chance = l_spawn_chance,
-		max_height = 0
-	})
-
 	mobs:register_egg("mobs_sharks:shark_lg", "Shark (large)",
 			"mob_shark_shark_item.png", 0)
 end
 
 -- medium
 
-if ENABLE_SHARK_MEDIUM then
+if ENABLE_MEDIUM then
 
 	mobs:register_mob("mobs_sharks:shark_md", {
 		type = "monster",
@@ -138,22 +131,13 @@ if ENABLE_SHARK_MEDIUM then
 		}
 	})
 
-	mobs:spawn({
-		name = "mobs_sharks:shark_md",
-		nodes = {"group:water"},
-		neighbors = {"group:water", "seawrecks:woodship", "seawrecks:uboot"},
-		interval = 30,
-		chance = l_spawn_chance,
-		max_height = 0
-	})
-
 	mobs:register_egg("mobs_sharks:shark_md", "Shark (medium)",
 			"mob_shark_shark_item.png", 0)
 end
 
 -- small
 
-if ENABLE_SHARK_SMALL then
+if ENABLE_SMALL then
 
 	mobs:register_mob("mobs_sharks:shark_sm", {
 		type = "monster",
@@ -193,18 +177,53 @@ if ENABLE_SHARK_SMALL then
 		}
 	})
 
-	mobs:spawn({
-		name = "mobs_sharks:shark_sm",
-		nodes = {"group:water"},
-		neighbors = {"group:water", "seawrecks:woodship", "seawrecks:uboot"},
-		interval = 30,
-		chance = l_spawn_chance,
-		max_height = 0
-	})
-
 	mobs:register_egg("mobs_sharks:shark_sm", "Shark (small)",
 			"mob_shark_shark_item.png", 0)
 end
 
+-- Check for custom spawn.lua
+
+local MP = minetest.get_modpath(minetest.get_current_modname()) .. "/"
+local input = io.open(MP .. "spawn.lua", "r")
+
+if input then
+	input:close() ; input = nil ; dofile(MP .. "spawn.lua")
+else
+	if ENABLE_SMALL then
+
+		mobs:spawn({
+			name = "mobs_sharks:shark_sm",
+			nodes = {"group:water"},
+			neighbors = {"group:water", "seawrecks:woodship", "seawrecks:uboot"},
+			interval = 30,
+			chance = l_spawn_chance,
+			max_height = 0
+		})
+	end
+
+	if ENABLE_MEDIUM then
+
+		mobs:spawn({
+			name = "mobs_sharks:shark_md",
+			nodes = {"group:water"},
+			neighbors = {"group:water", "seawrecks:woodship", "seawrecks:uboot"},
+			interval = 30,
+			chance = l_spawn_chance,
+			max_height = 0
+		})
+	end
+
+	if ENABLE_LARGE then
+
+		mobs:spawn({
+			name = "mobs_sharks:shark_lg",
+			nodes = {"group:water"},
+			neighbors = {"group:water", "seawrecks:woodship", "seawrecks:uboot"},
+			interval = 30,
+			chance = l_spawn_chance,
+			max_height = 0
+		})
+	end
+end
 
 print("[MOD] Mobs Redo Sharks loaded")
