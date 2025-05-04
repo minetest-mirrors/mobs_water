@@ -130,7 +130,7 @@ else
 			name = "mobs_crocs:crocodile_float",
 			nodes = {"group:water"},
 			neighbors = {
-				(mcl_core and "group:shovely" or "group:crumbly"),
+				(mod_mcl and "group:shovely" or "group:crumbly"),
 				"group:seaplants", "dryplants:juncus", "dryplants:reedmace",
 				(mod_mcl and "mcl_core:reeds" or "default:papyrus")
 			},
@@ -146,7 +146,7 @@ else
 		mobs:spawn({
 			name = "mobs_crocs:crocodile_swim",
 			nodes = {"group:water"},
-			neighbors = {(mcl_core and "group:shovely" or "group:crumbly")},
+			neighbors = {(mod_mcl and "group:shovely" or "group:crumbly")},
 			interval = 30,
 			chance = croc_spawn_chance,
 			min_height = -8,
