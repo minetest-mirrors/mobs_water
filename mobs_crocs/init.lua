@@ -1,9 +1,9 @@
 
 -- load settings
 
-local croc_walkers = minetest.settings:get_bool("mobs_crocs.enable_walkers", true)
-local croc_floaters = minetest.settings:get_bool("mobs_crocs.enable_floaters", true)
-local croc_swimmers = minetest.settings:get_bool("mobs_crocs.enable_swimmers", true)
+local croc_walkers = core.settings:get_bool("mobs_crocs.enable_walkers", true)
+local croc_floaters = core.settings:get_bool("mobs_crocs.enable_floaters", true)
+local croc_swimmers = core.settings:get_bool("mobs_crocs.enable_swimmers", true)
 local croc_spawn_chance = 60000
 
 -- tweak croc spawn chance depending on which one's are enabled
@@ -14,7 +14,7 @@ croc_spawn_chance = croc_spawn_chance - (croc_swimmers and 0 or 20000)
 
 -- Mineclone check
 
-local mod_mcl = minetest.get_modpath("mcl_core")
+local mod_mcl = core.get_modpath("mcl_core")
 
 -- crocodile definition
 
@@ -100,7 +100,7 @@ end
 
 -- Check for custom spawn.lua
 
-local MP = minetest.get_modpath(minetest.get_current_modname()) .. "/"
+local MP = core.get_modpath(core.get_current_modname()) .. "/"
 local input = io.open(MP .. "spawn.lua", "r")
 
 if input then
